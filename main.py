@@ -163,7 +163,6 @@ elif(app_mode=="DISEASE DETECTION"):
             # Open and save the image
             image = Image.open(test_image).convert("RGB")  
             image.save(file_path)
-            processed_image = transform(image).unsqueeze(0).to(device)
         st.snow()
         st.write("Our Prediction")
         result_index = model_prediction(file_path)
