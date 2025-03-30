@@ -9,13 +9,6 @@ from datetime import datetime
 # Ensure CUDA if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Define image transformations (same as dataset processing)
-transform = transforms.Compose([
-    transforms.Resize((128, 128)),  # Resize to match model input
-    transforms.ToTensor(),          # Convert to tensor
-    transforms.Normalize([0.5], [0.5])  # Normalize (adjust based on training settings)
-])
-
 SAVE_DIR = "history"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
@@ -171,15 +164,9 @@ elif(app_mode=="DISEASE DETECTION"):
             image = Image.open(test_image).convert("RGB")  
             image.save(file_path)
             processed_image = transform(image).unsqueeze(0).to(device)
-
-             # Convert back to PIL and save processed image
-            processed_pil = transforms.ToPILImage()(processed_image.squeeze(0).cpu())  
-            processed_file_path = os.path.join(SAVE_DIR, f"processed_{timestamp}.jpg")
-            processed_pil.save(processed_file_path)  # Save processed image
-
         st.snow()
         st.write("Our Prediction")
-        result_index = model_prediction(processed_file_path)
+        result_index = model_prediction(file_path)
         #Reading Labels
         class_name = ['Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy',
                     'Blueberry___healthy', 'Cherry_(including_sour)___Powdery_mildew', 
