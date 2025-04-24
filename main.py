@@ -233,20 +233,46 @@ elif(app_mode=="DISEASE DETECTION"):
         treatment = treatment_dict.get(disease_name, "No specific treatment found. Consult an expert.")
         st.info(f"**Suggested Treatment** {treatment}")
 
-        class_nameSpanish = ['Manzana___Costra_de_la_manzana', 'Manzana___Podredumbre_negra', 'Manzana___Roya_del_manzano_y_el_cedro', 'Manzana___saludable',
-              'Arándano___saludable', 'Cereza_(incluyendo_ácida)___Oídio',
-              'Cereza_(incluyendo_ácida)___saludable', 'Maíz___Mancha_foliar_por_Cercospora_Mancha_gris',
-              'Maíz___Roya_común', 'Maíz___Tizón_foliar_del_norte', 'Maíz___saludable',
-              'Uva___Podredumbre_negra', 'Uva___Esca_(Sarampión_negro)', 'Uva___Tizón_foliar_(Isariopsis)',
-              'Uva___saludable', 'Naranja___Huanglongbing_(Enverdecimiento_cítrico)', 'Durazno___Mancha_bacteriana',
-              'Durazno___saludable', 'Pimiento_dulce___Mancha_bacteriana', 'Pimiento_dulce___saludable',
-              'Papa___Tizón_temprano', 'Papa___Tizón_tardío', 'Papa___saludable',
-              'Frambuesa___saludable', 'Soya___saludable', 'Calabaza___Oídio',
-              'Fresa___Chamuscado_foliar', 'Fresa___saludable', 'Tomate___Mancha_bacteriana',
-              'Tomate___Tizón_temprano', 'Tomate___Tizón_tardío', 'Tomate___Moho_foliar',
-              'Tomate___Mancha_foliar_por_Septoria', 'Tomate___Ácaros_Telaraña_(Tetranychus_urticae)',
-              'Tomate___Mancha_objetivo', 'Tomate___Virus_del_enrollamiento_amarillo_de_la_hoja',
-              'Tomate___Virus_del_mosaico_del_tomate', 'Tomate___saludable']
+        class_nameSpanish = {
+            "Apple___Apple_scab": "Manzana___Costra_de_la_manzana",
+            "Apple___Black_rot": "Manzana___Podredumbre_negra",
+            "Apple___Cedar_apple_rust": "Manzana___Roya_del_manzano_y_el_cedro",
+            "Apple___healthy": "Manzana___saludable",
+            "Blueberry___healthy": "Arándano___saludable",
+            "Cherry_(including_sour)___Powdery_mildew": "Cereza_(incluyendo_ácida)___Oídio",
+            "Cherry_(including_sour)___healthy": "Cereza_(incluyendo_ácida)___saludable",
+            "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": "Maíz___Mancha_foliar_por_Cercospora_Mancha_gris",
+            "Corn_(maize)___Common_rust_": "Maíz___Roya_común",
+            "Corn_(maize)___Northern_Leaf_Blight": "Maíz___Tizón_foliar_del_norte",
+            "Corn_(maize)___healthy": "Maíz___saludable",
+            "Grape___Black_rot": "Uva___Podredumbre_negra",
+            "Grape___Esca_(Black_Measles)": "Uva___Esca_(Sarampión_negro)",
+            "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": "Uva___Tizón_foliar_(Isariopsis)",
+            "Grape___healthy": "Uva___saludable",
+            "Orange___Haunglongbing_(Citrus_greening)": "Naranja___Huanglongbing_(Enverdecimiento_cítrico)",
+            "Peach___Bacterial_spot": "Durazno___Mancha_bacteriana",
+            "Peach___healthy": "Durazno___saludable",
+            "Pepper,_bell___Bacterial_spot": "Pimiento_dulce___Mancha_bacteriana",
+            "Pepper,_bell___healthy": "Pimiento_dulce___saludable",
+            "Potato___Early_blight": "Papa___Tizón_temprano",
+            "Potato___Late_blight": "Papa___Tizón_tardío",
+            "Potato___healthy": "Papa___saludable",
+            "Raspberry___healthy": "Frambuesa___saludable",
+            "Soybean___healthy": "Soya___saludable",
+            "Squash___Powdery_mildew": "Calabaza___Oídio",
+            "Strawberry___Leaf_scorch": "Fresa___Chamuscado_foliar",
+            "Strawberry___healthy": "Fresa___saludable",
+            "Tomato___Bacterial_spot": "Tomate___Mancha_bacteriana",
+            "Tomato___Early_blight": "Tomate___Tizón_temprano",
+            "Tomato___Late_blight": "Tomate___Tizón_tardío",
+            "Tomato___Leaf_Mold": "Tomate___Moho_foliar",
+            "Tomato___Septoria_leaf_spot": "Tomate___Mancha_foliar_por_Septoria",
+            "Tomato___Spider_mites Two-spotted_spider_mite": "Tomate___Ácaros_Telaraña_(Tetranychus_urticae)",
+            "Tomato___Target_Spot": "Tomate___Mancha_objetivo",
+            "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "Tomate___Virus_del_enrollamiento_amarillo_de_la_hoja",
+            "Tomato___Tomato_mosaic_virus": "Tomate___Virus_del_mosaico_del_tomate",
+            "Tomato___healthy": "Tomate___saludable"
+        }
 
 
         treatment_dictSpanish = {
@@ -482,32 +508,45 @@ elif(app_mode=="DISEASE DETECTION"):
                     'Tomato___healthy': "未检测到病害。保持养分平衡和预防措施。"
                 }
 
+        # language = st.selectbox("🌐 Select Language:", ["Hindi", "Spanish", "Chinese"])
 
         # language = st.selectbox("भाषा चुनें | Select Language:", ["English", "हिन्दी"])
-        st.markdown(f"**HINDI/हिंदी:**")
+        # st.markdown(f"**HINDI/हिंदी:**")
 
         treatmentHindi = treatment_dictHindi.get(disease_name, "कोई विशेष उपचार पहचाना नहीं गया है। कृपया किसी विशेषज्ञ से परामर्श करें।")
         disease_nameHindi = class_nameHindi.get(disease_name, "रोग XX")
-        st.success(f"**रोग:** {disease_nameHindi}")
+        # st.success(f"**रोग:** {disease_nameHindi}")
 
-        st.info(f"**सुझाए गए उपचार:** {treatmentHindi}")
-
-        st.markdown(f"**SPANISH/Español:**")
+        # st.info(f"**सुझाए गए उपचार:** {treatmentHindi}")
+#
+        # st.markdown(f"**SPANISH/Español:**")
 
         treatmentSpanish = treatment_dictSpanish.get(disease_name, "No se ha identificado un tratamiento concreto. Se recomienda consultar a un especialista.")
         disease_nameSpanish = class_nameSpanish.get(disease_name, "enfermedad XX")
-        st.success(f"**enfermedad:** {disease_nameSpanish}")
+        # st.success(f"**enfermedad:** {disease_nameSpanish}")
 
-        st.info(f"**Tratamiento sugerido:--** {treatmentSpanish}")
+        # st.info(f"**Tratamiento sugerido:--** {treatmentSpanish}")
 
-        st.markdown(f"**Chinese/中文:**")
+        # st.markdown(f"**Chinese/中文:**")
 
         treatmentChinese = treatment_dictChinese.get(disease_name, " 尚未确定具体治疗方法，建议咨询专业人员。")
         disease_nameChinese = class_nameChinese.get(disease_name, "疾病 XX")
-        st.success(f"**疾病:** {disease_nameChinese}")
+        # st.success(f"**疾病:** {disease_nameChinese}")
 
-        st.info(f"**建议治疗:--** {treatmentChinese}")
+        # st.info(f"**建议治疗:--** {treatmentChinese}")
 
+        
+        with st.expander("🌐 Hindi / हिंदी"):
+            st.success(f"**रोग:** {disease_nameHindi}")
+            st.info(f"**सुझाए गए उपचार:** {treatmentHindi}")
+
+        with st.expander("🌐 Spanish / Español"):
+            st.success(f"**Enfermedad:** {disease_nameSpanish}")
+            st.info(f"**Tratamiento sugerido:** {treatmentSpanish}")
+
+        with st.expander("🌐 Chinese / 中文"):
+            st.success(f"**疾病:** {disease_nameChinese}")
+            st.info(f"**建议治疗:** {treatmentChinese}")
 
 
 
