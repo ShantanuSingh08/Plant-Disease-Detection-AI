@@ -128,6 +128,7 @@ elif app_mode == "ABOUT US":
                     st.markdown(f"**    **")
                     st.markdown(f"**{member['name']}**")
                     st.markdown(f"**Full-Stack Developer**")
+                    st.markdown(f"**Made in Streamlit, Python**")
                     st.markdown(f"**    **")
 
 
