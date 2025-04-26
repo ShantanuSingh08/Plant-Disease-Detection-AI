@@ -118,9 +118,7 @@ elif app_mode == "ABOUT US":
 
     # Team Member Data
     team_members = [
-         {"name": "Srija Kontham", "linkedin": "#", "github": "#", "instagram": "#"},
-         {"name": "Sowmya Sri Devagoni", "linkedin": "#", "github": "#", "instagram": "#"},
-         {"name": "Sai Vishnu Teja Madhanambeti", "linkedin": "#", "github": "#", "instagram": "#"}, 
+         {"name": "Shantanu Singh", "linkedin": "#", "github": "#", "instagram": "#"},
     ]
 
     # Display Team Cards
