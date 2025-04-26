@@ -122,8 +122,8 @@ elif app_mode == "ABOUT US":
     ]
 
         # Display Team Cards
-cols = st.columns(3)  
-for index, member in enumerate(team_members):
+    cols = st.columns(3)  
+    for index, member in enumerate(team_members):
                  with cols[index % 3]:
                     st.markdown(f"**    **")
                     st.markdown(f"**{member['name']}**")
