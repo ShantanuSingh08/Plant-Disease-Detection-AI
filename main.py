@@ -121,9 +121,9 @@ elif app_mode == "ABOUT US":
          {"name": "Shantanu Singh", "linkedin": "#", "github": "#", "instagram": "#"},
     ]
 
-        # Display Team Cards
-     cols = st.columns(3)  
-     for index, member in enumerate(team_members):
+     # Display Team Cards
+         cols = st.columns(3)  
+         for index, member in enumerate(team_members):
          with cols[index % 3]:
              st.markdown(f"**{member['name']}**")
              st.markdown(f"**Full-Stack Developer**")
