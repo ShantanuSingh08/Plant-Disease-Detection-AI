@@ -122,11 +122,10 @@ elif app_mode == "ABOUT US":
     ]
 
     # Display Team Cards
-
-            st.markdown(f"**    **")
-            st.markdown(f"**{member['name']}**")
-            st.markdown(f"**Full-Stack Developer**")
-            st.markdown(f"**    **")
+    st.markdown(f"**    **")
+    st.markdown(f"**{member['name']}**")
+    st.markdown(f"**Full-Stack Developer**")
+    st.markdown(f"**    **")
 
 
 
