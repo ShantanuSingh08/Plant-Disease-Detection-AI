@@ -127,6 +127,8 @@ elif app_mode == "ABOUT US":
         with cols[index % 3]:
             st.markdown(f"**    **")
             st.markdown(f"**{member['name']}**")
+            st.markdown(f"**    **")
+
 
 
 #Prediction Page
