@@ -76,7 +76,7 @@ if loc and "coords" in loc:
     longitude = coords.get("longitude")
 
     if latitude and longitude:
-        st.success(f"📍 Location: {latitude}, {longitude}")
+        st.success(f"You are good to use the app!! 😊 ")
     else:
         st.warning("⚠️ Location coordinates incomplete.")
 else:
