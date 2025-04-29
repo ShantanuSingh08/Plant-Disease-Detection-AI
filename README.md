@@ -1,4 +1,4 @@
-##**🌿 Plant Detection AI**
+## **🌿 Plant Detection AI**
 
 AI-Powered Plant Identification and Health Monitoring System
 
