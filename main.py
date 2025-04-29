@@ -12,11 +12,23 @@ from torchvision import transforms
 from datetime import datetime
 from cloudinary.utils import cloudinary_url
 from dotenv import load_dotenv
-
-
-
 from streamlit_js_eval import get_geolocation
+from pymongo.mongo_client import MongoClient
 
+
+Mongo_URI = "mongodb+srv://shantanusingh1807:GyDJ8g8833ZZGuHz@cluster0.fa78xzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+# Create a new client and connect to the server
+client = MongoClient(Mongo_URI)
+db = client["plantai"]
+collection = db["predictions"]
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+    
 # Ensure CUDA if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -217,12 +229,10 @@ elif(app_mode=="DISEASE DETECTION"):
             st.success("Image uploaded to Cloudinary!")
             st.image(image_url, caption="Uploaded Image", use_column_width=True)
 
-
+            
         st.snow()
         st.write("Our Prediction")
         result_index = model_prediction(file_path)
-
-
 
         #Reading Labels
         class_name = ['Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy',
@@ -243,6 +253,20 @@ elif(app_mode=="DISEASE DETECTION"):
         disease_name = class_name[result_index]
 
         predicted_label = class_name[result_index]
+
+        document = {
+                "_id": timestamp,
+                "latitude": latitude,
+                "longitude": longitude,
+                "prediction": predicted_label,  
+                "timestamp": timestamp
+            }
+
+        # Save to MongoDB
+        try:
+            collection.insert_one(document)
+        except Exception as e:
+            st.error(f"Error: {e}")
 
         # Ensure needed variables are defined above this block
         if "last_selected_label" not in st.session_state:
@@ -270,9 +294,6 @@ elif(app_mode=="DISEASE DETECTION"):
                 public_id=public_id_feedback,
                 resource_type="image"
             )
-
-            st.success(f"✅ Feedback saved locally and on Cloudinary as `{selected_label}`.")
-
 
         # Disease Treatment Mapping
         treatment_dict = { 
