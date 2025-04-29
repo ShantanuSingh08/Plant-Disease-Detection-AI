@@ -4,10 +4,10 @@ import numpy as np
 import io
 import os
 import torch
-from torchvision import transforms
-from datetime import datetime
 import cloudinary
 import cloudinary.uploader
+from torchvision import transforms
+from datetime import datetime
 from cloudinary.utils import cloudinary_url
 
 # Ensure CUDA if available
