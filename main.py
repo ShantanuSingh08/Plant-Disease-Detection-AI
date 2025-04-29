@@ -1,10 +1,14 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
+import io
 import os
 import torch
 from torchvision import transforms
 from datetime import datetime
+import cloudinary
+import cloudinary.uploader
+from cloudinary.utils import cloudinary_url
 
 # Ensure CUDA if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -12,6 +16,13 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SAVE_DIR = "history"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
+# Configuration       
+cloudinary.config( 
+    cloud_name = "dqazriwci", 
+    api_key = "599982432229386", 
+    api_secret = "o6XrlK5fgpB9YqpV-8sFE5BcO-c",
+    secure=True
+)
 
 def model_prediction(test_image):
     model = tf.keras.models.load_model("trained_plant_disease_model.keras")
@@ -163,6 +174,25 @@ elif(app_mode=="DISEASE DETECTION"):
             # Open and save the image
             image = Image.open(test_image).convert("RGB")  
             image.save(file_path)
+
+            # Open and save the image
+            image = Image.open(test_image).convert("RGB")  
+            img_bytes = io.BytesIO()
+            image.save(img_bytes, format="JPEG")
+            img_bytes.seek(0)
+
+            timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+            public_id = f"predictions/{timestamp}"
+
+            # Upload to Cloudinary
+            upload_result = cloudinary.uploader.upload(img_bytes, public_id=public_id, resource_type="image")
+
+            # Get the URL
+            image_url = upload_result["secure_url"]
+            st.success("Image uploaded to Cloudinary!")
+            st.image(image_url, caption="Uploaded Image", use_column_width=True)
+
+
         st.snow()
         st.write("Our Prediction")
         result_index = model_prediction(file_path)
