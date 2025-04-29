@@ -67,6 +67,6 @@ Custom Dataset Support: Can be trained on any labeled plant dataset (e.g., Plant
 
 **📦 Installation**
 
-git clone https://github.com/yourusername/plant-detection-ai.git
+git clone https://github.com/Shantanu08/plant-detection-ai.git
 cd plant-detection-ai
 pip install -r requirements.txt
