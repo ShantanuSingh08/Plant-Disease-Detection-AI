@@ -8,6 +8,7 @@ Plant Detection AI is a deep learning-based application designed to identify pla
 Whether you're a farmer, researcher, or developer, this project is tailored for robust, scalable plant classification and health diagnostics.
 
 **🚀 Features**
+
 🌱 Plant Species Identification
 Identify crop types such as Tomato, Potato, Corn, and more.
 
