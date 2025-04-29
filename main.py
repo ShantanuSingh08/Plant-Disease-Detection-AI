@@ -16,7 +16,7 @@ from streamlit_js_eval import get_geolocation
 from pymongo.mongo_client import MongoClient
 
 
-Mongo_URI = "mongodb+srv://shantanusingh1807:GyDJ8g8833ZZGuHz@cluster0.fa78xzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+Mongo_URI = os.getenv("Mongo_URI")
 
 # Create a new client and connect to the server
 client = MongoClient(Mongo_URI)
