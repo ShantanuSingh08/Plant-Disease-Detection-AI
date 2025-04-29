@@ -188,50 +188,213 @@ elif(app_mode=="DISEASE DETECTION"):
 
         # Disease Treatment Mapping
         treatment_dict = { 
-                'Apple___Apple_scab': "Apply fungicides like Captan or Mancozeb. Prune and destroy infected leaves.",
-                'Apple___Black_rot': "Remove infected fruits and twigs. Apply copper-based fungicides. Improve air circulation.",
-                'Apple___Cedar_apple_rust': "Use fungicides before bud break. Remove nearby cedar trees to prevent spread.",
-                'Apple___healthy': "No disease detected. Maintain proper watering and pruning practices.",
-                'Blueberry___healthy': "No disease detected. Ensure proper drainage and balanced fertilization.",
-                'Cherry_(including_sour)___Powdery_mildew': "Use sulfur or neem oil sprays. Prune to improve airflow.",
-                'Cherry_(including_sour)___healthy': "No disease detected. Avoid overwatering and ensure good soil health.",
-                'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': "Apply fungicides like Azoxystrobin. Rotate crops and use resistant varieties.",
-                'Corn_(maize)___Common_rust_': "Use rust-resistant varieties. Apply fungicides if severe.",
-                'Corn_(maize)___Northern_Leaf_Blight': "Remove infected leaves, improve air circulation, and apply fungicides if needed.",
-                'Corn_(maize)___healthy': "No disease detected. Maintain proper crop rotation and avoid excessive nitrogen fertilization.",
-                'Grape___Black_rot': "Prune infected vines. Apply fungicides like Myclobutanil early in the season.",
-                'Grape___Esca_(Black_Measles)': "Remove infected vines. Improve drainage and apply protective fungicides.",
-                'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': "Spray with copper-based fungicides. Remove infected leaves.",
-                'Grape___healthy': "No disease detected. Maintain regular pruning and disease monitoring.",
-                'Orange___Haunglongbing_(Citrus_greening)': "No cure available. Remove infected trees and control psyllid insects.",
-                'Peach___Bacterial_spot': "Use copper sprays in early spring. Remove and destroy infected leaves.",
-                'Peach___healthy': "No disease detected. Maintain balanced fertilization and irrigation.",
-                'Pepper,_bell___Bacterial_spot': "Use copper-based fungicides. Avoid overhead watering. Rotate crops.",
-                'Pepper,_bell___healthy': "No disease detected. Maintain optimal watering and nutrient balance.",
-                'Potato___Early_blight': "Apply fungicides like Chlorothalonil. Remove infected leaves. Rotate crops.",
-                'Potato___Late_blight': "Use fungicides with Mancozeb or Chlorothalonil. Destroy infected plants immediately.",
-                'Potato___healthy': "No disease detected. Ensure proper soil drainage and avoid overcrowding plants.",
-                'Raspberry___healthy': "No disease detected. Regularly prune and remove weak canes.",
-                'Soybean___healthy': "No disease detected. Monitor for pests and ensure soil fertility.",
-                'Squash___Powdery_mildew': "Apply sulfur or potassium bicarbonate sprays. Ensure proper spacing for airflow.",
-                'Strawberry___Leaf_scorch': "Use copper-based fungicides. Remove infected leaves. Avoid overhead watering.",
-                'Strawberry___healthy': "No disease detected. Maintain healthy soil and avoid excessive moisture.",
-                'Tomato___Bacterial_spot': "Use copper-based sprays. Avoid handling wet plants. Remove infected leaves.",
-                'Tomato___Early_blight': "Apply fungicides like Mancozeb. Mulch around plants to prevent soil splash.",
-                'Tomato___Late_blight': "Destroy infected plants. Apply fungicides containing Chlorothalonil.",
-                'Tomato___Leaf_Mold': "Improve ventilation. Use copper or sulfur-based fungicides.",
-                'Tomato___Septoria_leaf_spot': "Apply fungicides. Remove infected lower leaves.",
-                'Tomato___Spider_mites Two-spotted_spider_mite': "Spray with neem oil or insecticidal soap. Increase humidity.",
-                'Tomato___Target_Spot': "Use fungicides. Rotate crops. Improve airflow around plants.",
-                'Tomato___Tomato_Yellow_Leaf_Curl_Virus': "Use resistant varieties. Control whiteflies with neem oil or insecticidal soap.",
-                'Tomato___Tomato_mosaic_virus': "Remove infected plants. Disinfect tools regularly.",
-                'Tomato___healthy': "No disease detected. Ensure balanced fertilization and disease prevention measures."
-            }
-        
+            'Apple___Apple_scab': "A fungal disease caused by *Venturia inaequalis*, resulting in olive-green to black velvety spots on leaves, fruit, and stems. Severe infections cause defoliation and reduce fruit quality significantly.",
+            
+            'Apple___Black_rot': "Caused by *Botryosphaeria obtusa*, this disease produces dark, concentric rings on fruit, cankers on branches, and leaf spots. It leads to significant fruit losses if not managed promptly.",
+            
+            'Apple___Cedar_apple_rust': "A fungal disease (*Gymnosporangium juniperi-virginianae*) needing both apple and cedar trees to complete its life cycle. It causes bright orange or yellow spots on leaves and severe defoliation in apples.",
+            
+            'Apple___healthy': "No disease detected. The tree exhibits vigorous growth, lush green leaves, and blemish-free fruit without any fungal, bacterial, or viral symptoms.",
+            
+            'Blueberry___healthy': "No disease detected. Blueberry plants show healthy foliage, firm fruit development, and no signs of fungal infections such as mummy berry or leaf spot.",
+            
+            'Cherry_(including_sour)___Powdery_mildew': "A fungal disease caused by *Podosphaera clandestina*, characterized by white powdery fungal growth on young leaves, stems, and fruit. It leads to poor fruit quality and reduced yield.",
+            
+            'Cherry_(including_sour)___healthy': "No disease detected. Trees exhibit healthy green foliage, firm fruit, and no powdery or spotty symptoms on leaves or fruit.",
+            
+            'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': "Caused by *Cercospora zeae-maydis*, it appears as elongated gray or tan lesions on leaves. Severe infections reduce photosynthesis, impacting grain fill and yield.",
+            
+            'Corn_(maize)___Common_rust_': "A fungal disease (*Puccinia sorghi*) characterized by reddish-brown pustules on leaves. Severe infection leads to leaf yellowing, early senescence, and reduced crop yield.",
+            
+            'Corn_(maize)___Northern_Leaf_Blight': "Caused by *Exserohilum turcicum*, this disease creates long, elliptical gray-green lesions on leaves. Heavy infection weakens the plant and significantly decreases grain production.",
+            
+            'Corn_(maize)___healthy': "No disease detected. Corn plants show robust green foliage, upright growth, and lack of spotting, blighting, or pest damage.",
+            
+            'Grape___Black_rot': "A fungal disease caused by *Guignardia bidwellii*, producing small brown spots on leaves and circular, black shriveled fruit known as 'mummies.' It significantly reduces fruit quality and vine vigor.",
+            
+            'Grape___Esca_(Black_Measles)': "A complex fungal disease caused by multiple pathogens (e.g., *Phaeomoniella chlamydospora*), leading to tiger-striped leaves, berry shriveling, and vine dieback. A major threat in mature vineyards.",
+            
+            'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': "Caused by *Isariopsis clavispora*, this disease forms angular, brownish spots on grape leaves that merge, causing premature leaf drop and reduced vine health.",
+            
+            'Grape___healthy': "No disease detected. Vines show continuous, healthy growth with undamaged leaves and plump, healthy grape clusters.",
+            
+            'Orange___Haunglongbing_(Citrus_greening)': "A bacterial disease caused by *Candidatus Liberibacter* spp., spread by the Asian citrus psyllid. It causes yellow shoot development, lopsided fruit, and ultimately tree death. No cure exists.",
+            
+            'Peach___Bacterial_spot': "Caused by *Xanthomonas arboricola pv. pruni*, this bacterial disease forms dark, water-soaked lesions on leaves and fruit, leading to premature defoliation and blemished fruit.",
+            
+            'Peach___healthy': "No disease detected. Peaches develop without leaf spots, fruit blemishes, or canker signs, indicating optimal growing conditions and strong plant health.",
+            
+            'Pepper,_bell___Bacterial_spot': "Caused by *Xanthomonas campestris pv. vesicatoria*, this disease creates small, water-soaked spots on leaves and fruit that turn brown and crack, affecting pepper marketability and yield.",
+            
+            'Pepper,_bell___healthy': "No disease detected. Plants display lush green foliage, healthy fruit, and absence of leaf or stem lesions.",
+            
+            'Potato___Early_blight': "A fungal disease caused by *Alternaria solani*, showing as dark brown spots with concentric rings on older leaves. It weakens plants, reduces tuber size, and lowers yield.",
+            
+            'Potato___Late_blight': "A devastating disease caused by *Phytophthora infestans*. It results in rapidly spreading water-soaked lesions on leaves and stems, leading to plant collapse and tuber rot.",
+            
+            'Potato___healthy': "No disease detected. Potato plants show vigorous green foliage, unblemished leaves, and no signs of fungal blight or rot.",
+            
+            'Raspberry___healthy': "No disease detected. Raspberry canes are strong, leaves are green and full, and fruits develop without deformation or discoloration.",
+            
+            'Soybean___healthy': "No disease detected. Plants maintain uniform green leaves, proper pod development, and show no symptoms of rusts, rots, or blights.",
+            
+            'Squash___Powdery_mildew': "A fungal disease (*Podosphaera xanthii*) producing white, powdery growth on leaf surfaces. Severe infections stunt plant growth and reduce fruit production.",
+            
+            'Strawberry___Leaf_scorch': "A fungal disease caused by *Diplocarpon earliana*, resulting in small purple spots that enlarge and merge, leading to scorched, brittle leaves and reduced berry yield.",
+            
+            'Strawberry___healthy': "No disease detected. Strawberry plants exhibit strong vegetative growth, bright green leaves, and healthy, juicy fruit production.",
+            
+            'Tomato___Bacterial_spot': "Caused by *Xanthomonas* spp., it results in small, dark water-soaked spots on leaves, stems, and fruit. It leads to significant blemishing and reduced marketability of tomatoes.",
+            
+            'Tomato___Early_blight': "A fungal infection (*Alternaria solani*) causing brown leaf spots with concentric rings. The disease weakens the plant and drastically reduces tomato fruit production if unmanaged.",
+            
+            'Tomato___Late_blight': "Caused by *Phytophthora infestans*, it produces large, greasy-looking lesions on leaves and fruit, leading to rapid plant death and massive crop loss if untreated.",
+            
+            'Tomato___Leaf_Mold': "A fungal disease caused by *Passalora fulva*, manifesting as yellow spots on the top of leaves and olive-green mold underneath. It thrives in warm, humid conditions and can devastate yields.",
+            
+            'Tomato___Septoria_leaf_spot': "Caused by *Septoria lycopersici*, this disease forms small, circular spots with dark borders on leaves, leading to defoliation and reduced fruit production in tomatoes.",
+            
+            'Tomato___Spider_mites Two-spotted_spider_mite': "An infestation by *Tetranychus urticae*, leading to speckled, yellowing leaves and fine webbing. Severe infestations cause leaf drop and stunted plant growth.",
+            
+            'Tomato___Target_Spot': "Caused by *Corynespora cassiicola*, target spot disease produces round, tan lesions with concentric rings. It can cause premature defoliation and fruit blemishes in tomatoes.",
+            
+            'Tomato___Tomato_Yellow_Leaf_Curl_Virus': "A viral disease transmitted by whiteflies, causing severe stunting, yellowing of young leaves, and curled leaf margins. It severely limits tomato plant growth and fruiting.",
+            
+            'Tomato___Tomato_mosaic_virus': "A highly contagious viral infection leading to mottled, light and dark green leaf patterns, leaf curling, and overall stunted plant growth, reducing tomato quality and yield.",
+            
+            'Tomato___healthy': "No disease detected. Tomato plants grow vigorously with lush, unblemished leaves and abundant, healthy fruit development."
+        }
+
+        marketplace_dict = {
+            'Apple___Apple_scab': [
+                "[Captan Fungicide Spray](https://a.co/d/0tsB75g)",
+                "[Mancozeb Fungicide](Mancozeb Fungicide)"
+            ],
+            'Apple___Black_rot': [
+                "[Copper Fungicide Concentrate](https://a.co/d/e1owWjC)",
+                "[Botrytis Fungus Control Spray](https://a.co/d/6vCuDeL)"
+            ],
+            'Apple___Cedar_apple_rust': [
+                "[Neem Oil Spray](https://a.co/d/6vCuDeL)",
+                "[Bonide Fung-onil Fungicide](https://a.co/d/hWEmXvf)"
+            ],
+            'Apple___healthy': [
+                "[All-purpose Organic Fertilizer](https://a.co/d/fqabwec)"
+            ],
+            'Blueberry___healthy': [
+                "[Blueberry Plant Fertilizer](https://a.co/d/gywsB52)"
+            ],
+            'Cherry_(including_sour)___Powdery_mildew': [
+                "[Sulfur Plant Fungicide](https://a.co/d/3rRfD9t)",
+                "[Neem Oil Organic Pesticide](https://a.co/d/6vCuDeL)"
+            ],
+            'Cherry_(including_sour)___healthy': [
+                "[Cherry Tree Fertilizer Spikes](https://a.co/d/cthjgBh)"
+            ],
+            'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': [
+                "[Azoxystrobin Fungicide](https://a.co/d/eW5Ho4l)"
+            ],
+            'Corn_(maize)___Common_rust_': [
+                "[Broad Spectrum Fungicide Spray](https://a.co/d/5EjTRSm)"
+            ],
+            'Corn_(maize)___Northern_Leaf_Blight': [
+                "[Systemic Fungicide for Crops](https://a.co/d/9hmsfUZ)"
+            ],
+            'Corn_(maize)___healthy': [
+                "[Organic Corn Fertilizer](https://a.co/d/2dbXUJy)"
+            ],
+            'Grape___Black_rot': [
+                "[Myclobutanil Systemic Fungicide](https://a.co/d/1A4bhYD)"
+            ],
+            'Grape___Esca_(Black_Measles)': [
+                "[Protective Vine Fungicide](https://a.co/d/fZ16PBY)"
+            ],
+            'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)': [
+                "[Copper Fungicide Spray for Grapes](https://a.co/d/5ARrqy3)"
+            ],
+            'Grape___healthy': [
+                "[Grape Fertilizer & Growth Booster](https://a.co/d/8j6Bu0L)"
+            ],
+            'Orange___Haunglongbing_(Citrus_greening)': [
+                "[Citrus Tree Soil & Fertilizer Kit](https://a.co/d/eJoAWY5)"
+            ],
+            'Peach___Bacterial_spot': [
+                "[Organic Copper Fungicide](https://a.co/d/8KFGaf8)"
+            ],
+            'Peach___healthy': [
+                "[Peach Tree Fertilizer Spikes](https://a.co/d/9HwwX3e)"
+            ],
+            'Pepper,_bell___Bacterial_spot': [
+                "[Copper-Based Plant Spray](https://a.co/d/5ARrqy3)"
+            ],
+            'Pepper,_bell___healthy': [
+                "[Pepper Plant Growth Booster](https://a.co/d/eaZFSDS)"
+            ],
+            'Potato___Early_blight': [
+                "[Chlorothalonil Fungicide](https://a.co/d/379QdIT)"
+            ],
+            'Potato___Late_blight': [
+                "[Mancozeb Systemic Fungicide](https://a.co/d/h6amrIJ)"
+            ],
+            'Potato___healthy': [
+                "[Organic Potato Fertilizer](https://a.co/d/fQOsWOx)"
+            ],
+            'Raspberry___healthy': [
+                "[Raspberry Plant Food](https://a.co/d/epmKWLW)"
+            ],
+            'Soybean___healthy': [
+                "[Soybean Crop Enhancer Fertilizer](https://www.flipkart.com/cropboost-soyabean-liq-fertilizer-crop-make-helthy-plant/p/itmbaa5e2145da60?pid=SMNH8MGGYCSRSRG3&lid=LSTSMNH8MGGYCSRSRG3NE1M9T&marketplace=FLIPKART&cmpid=content_soil-manure_8965229628_gmc)"
+            ],
+            'Squash___Powdery_mildew': [
+                "[Potassium Bicarbonate Fungicide](https://a.co/d/9g7kKyn)"
+            ],
+            'Strawberry___Leaf_scorch': [
+                "[Copper Fungicide for Strawberries](https://a.co/d/6wWZ2sO)"
+            ],
+            'Strawberry___healthy': [
+                "[Strawberry Plant Fertilizer](https://a.co/d/87SoXQW)"
+            ],
+            'Tomato___Bacterial_spot': [
+                "[Copper Spray for Tomato Plants](https://a.co/d/c4U1CmO)"
+            ],
+            'Tomato___Early_blight': [
+                "[Mancozeb Fungicide for Tomatoes](https://a.co/d/hLLIeN9)"
+            ],
+            'Tomato___Late_blight': [
+                "[Chlorothalonil Tomato Fungicide](https://a.co/d/87RR7b2)"
+            ],
+            'Tomato___Leaf_Mold': [
+                "[Sulfur Fungicide Dust](https://a.co/d/fQ5C8Eb)"
+            ],
+            'Tomato___Septoria_leaf_spot': [
+                "[Broad Spectrum Fungicide](https://a.co/d/8pVKlLN)"
+            ],
+            'Tomato___Spider_mites Two-spotted_spider_mite': [
+                "[Neem Oil Spray for Mites](https://a.co/d/4aOc6X8)"
+            ],
+            'Tomato___Target_Spot': [
+                "[Crop Rotation & Fungicide Kit](https://a.co/d/6ItiPwv)"
+            ],
+            'Tomato___Tomato_Yellow_Leaf_Curl_Virus': [
+                "[Whitefly Control Neem Spray](https://a.co/d/aYxxZRW)"
+            ],
+            'Tomato___Tomato_mosaic_virus': [
+                "[Plant Disinfectant Solution](https://a.co/d/4aWhFIT)"
+            ],
+            'Tomato___healthy': [
+                "[Balanced Tomato Fertilizer](https://a.co/d/57YPDU2)"
+            ],
+        }
+
                 
         # Get treatment
         treatment = treatment_dict.get(disease_name, "No specific treatment found. Consult an expert.")
         st.info(f"**Suggested Treatment** {treatment}")
+
+        # Get marketplace products
+        marketplace_products = marketplace_dict.get(disease_name, ["No product suggestions available."])
+        products_list = "\n".join([f"- {product}" for product in marketplace_products])
+        st.markdown(f"**Marketplace Recommendations:**\n{products_list}")
 
         class_nameSpanish = {
             "Apple___Apple_scab": "Manzana___Costra_de_la_manzana",
