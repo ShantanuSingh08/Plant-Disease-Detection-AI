@@ -12,7 +12,7 @@ from cloudinary.utils import cloudinary_url
 from dotenv import load_dotenv
 
 
-load_dotenv()
+
 
 
 # Ensure CUDA if available
@@ -21,12 +21,13 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SAVE_DIR = "history"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
+load_dotenv()
 # Configuration       
 cloudinary.config( 
-    cloud_name = os.getenv("CLOUD_NAME")
-    api_key = os.getenv("CLOUD_API_KEY")
-    api_secret = os.getenv("CLOUD_API_SECRET")
-    secure=True
+    cloud_name = os.getenv("CLOUD_NAME"),
+    api_key = os.getenv("CLOUD_API_KEY"),
+    api_secret = os.getenv("CLOUD_API_SECRET"),
+    secure=True,
 )
 
 def model_prediction(test_image):
