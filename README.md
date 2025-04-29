@@ -3,6 +3,7 @@
 AI-Powered Plant Identification and Health Monitoring System
 
 **📸 Overview**
+
 Plant Detection AI is a deep learning-based application designed to identify plant species and analyze plant health conditions (e.g., disease detection) using real-time image input. Built for both desktop and mobile platforms, this system can assist in smart farming, botany research, and environmental monitoring.
 
 Whether you're a farmer, researcher, or developer, this project is tailored for robust, scalable plant classification and health diagnostics.
@@ -60,6 +61,7 @@ io & os	- File I/O and system path handling
 
 
 **🧠 Model Architecture**
+
 This project uses a hybrid pipeline:
 
 CNN-based Classifier (ResNet/MobileNet): for species classification and disease detection
