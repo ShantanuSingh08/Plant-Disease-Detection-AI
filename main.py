@@ -9,6 +9,11 @@ import cloudinary.uploader
 from torchvision import transforms
 from datetime import datetime
 from cloudinary.utils import cloudinary_url
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 
 # Ensure CUDA if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -18,9 +23,9 @@ os.makedirs(SAVE_DIR, exist_ok=True)
 
 # Configuration       
 cloudinary.config( 
-    cloud_name = "dqazriwci", 
-    api_key = "599982432229386", 
-    api_secret = "o6XrlK5fgpB9YqpV-8sFE5BcO-c",
+    cloud_name = os.getenv("CLOUD_NAME")
+    api_key = os.getenv("CLOUD_API_KEY")
+    api_secret = os.getenv("CLOUD_API_SECRET")
     secure=True
 )
 
