@@ -5,6 +5,7 @@ import io
 import os
 import torch
 import cloudinary
+import torch._classes
 import cloudinary.uploader
 from torchvision import transforms
 from datetime import datetime
@@ -20,6 +21,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 SAVE_DIR = "history"
 os.makedirs(SAVE_DIR, exist_ok=True)
+FEEDBACK_DIR = "feedback_data"
+os.makedirs(FEEDBACK_DIR, exist_ok=True)
+
 
 load_dotenv()
 # Configuration       
@@ -202,6 +206,9 @@ elif(app_mode=="DISEASE DETECTION"):
         st.snow()
         st.write("Our Prediction")
         result_index = model_prediction(file_path)
+
+
+
         #Reading Labels
         class_name = ['Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rust', 'Apple___healthy',
                     'Blueberry___healthy', 'Cherry_(including_sour)___Powdery_mildew', 
@@ -220,6 +227,36 @@ elif(app_mode=="DISEASE DETECTION"):
         st.success("Model is Predicting it's a {}".format(class_name[result_index]))
         disease_name = class_name[result_index]
 
+        predicted_label = class_name[result_index]
+
+        # Ensure needed variables are defined above this block
+        if "last_selected_label" not in st.session_state:
+            st.session_state.last_selected_label = class_name[int(result_index)]
+
+        # Dropdown for feedback (with predicted label preselected)
+        selected_label = st.selectbox("Select the correct label (if wrong):", class_name, index=int(result_index))
+
+        # If user selects something different, auto-trigger feedback
+        if selected_label != st.session_state.last_selected_label:
+            st.session_state.last_selected_label = selected_label
+
+            # Save corrected image locally
+            feedback_path = os.path.join(FEEDBACK_DIR, selected_label)
+            os.makedirs(feedback_path, exist_ok=True)
+
+            feedback_filename = f"WrongPrediction_{predicted_label.replace(' ', '_')}_as_{selected_label.replace(' ', '_')}_{timestamp}.jpg"
+            corrected_file_path = os.path.join(feedback_path, feedback_filename)
+            image.save(corrected_file_path)
+
+            # Upload to Cloudinary
+            public_id_feedback = f"feedback/WrongPrediction_{predicted_label.replace(' ', '_')}_as_{selected_label.replace(' ', '_')}_{timestamp}"
+            upload_result_feedback = cloudinary.uploader.upload(
+                corrected_file_path,
+                public_id=public_id_feedback,
+                resource_type="image"
+            )
+
+            st.success(f"✅ Feedback saved locally and on Cloudinary as `{selected_label}`.")
 
 
         # Disease Treatment Mapping
