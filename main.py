@@ -7,6 +7,7 @@ import torch
 import cloudinary
 import torch._classes
 import cloudinary.uploader
+from streamlit_js_eval import get_geolocation
 from torchvision import transforms
 from datetime import datetime
 from cloudinary.utils import cloudinary_url
@@ -14,7 +15,7 @@ from dotenv import load_dotenv
 
 
 
-
+from streamlit_js_eval import get_geolocation
 
 # Ensure CUDA if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -55,6 +56,20 @@ img = Image.open("Diseases.png")
 # display image using streamlit
 st.image(img)
 
+loc = get_geolocation()
+
+if loc and "coords" in loc:
+    coords = loc["coords"]
+    latitude = coords.get("latitude")
+    longitude = coords.get("longitude")
+
+    if latitude and longitude:
+        st.success(f"📍 Location: {latitude}, {longitude}")
+    else:
+        st.warning("⚠️ Location coordinates incomplete.")
+else:
+    st.warning("📍 Location not available. Please allow location access.")
+    
 #Main Page
 if(app_mode=="HOME"):
         # Homepage UI
@@ -179,7 +194,7 @@ elif(app_mode=="DISEASE DETECTION"):
         if test_image:
             # Create a unique filename with timestamp
             timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-            file_path = os.path.join(SAVE_DIR, f"{timestamp}.jpg")
+            file_path = os.path.join(SAVE_DIR, f"{timestamp}_{latitude},{longitude}_.jpg")
 
             # Open and save the image
             image = Image.open(test_image).convert("RGB")  
@@ -244,7 +259,7 @@ elif(app_mode=="DISEASE DETECTION"):
             feedback_path = os.path.join(FEEDBACK_DIR, selected_label)
             os.makedirs(feedback_path, exist_ok=True)
 
-            feedback_filename = f"WrongPrediction_{predicted_label.replace(' ', '_')}_as_{selected_label.replace(' ', '_')}_{timestamp}.jpg"
+            feedback_filename = f"WrongPrediction_{predicted_label.replace(' ', '_')}_as_{selected_label.replace(' ', '_')}_{timestamp}_{latitude},{longitude}_.jpg"
             corrected_file_path = os.path.join(feedback_path, feedback_filename)
             image.save(corrected_file_path)
 
