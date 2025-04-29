@@ -71,5 +71,7 @@ Custom Dataset Support: Can be trained on any labeled plant dataset (e.g., Plant
 **📦 Installation**
 
 git clone https://github.com/ShantanuSingh08/Plant-Disease-Detection-AI
+
 cd Plant-Disease-Detection-AI
+
 pip install -r requirements.txt
