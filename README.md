@@ -16,7 +16,7 @@ Identify crop types such as Tomato, Potato, Corn, and more.
 🦠 Disease Detection
 Detect leaf conditions like Leaf Spot, Blight, Mildew, and other common infections.
 
-📲 Camera/Image Upload Support
+📲 Image Upload Support
 Web and mobile-friendly image input via Streamlit.
 
 📦 Lightweight Deployment with Streamlit
